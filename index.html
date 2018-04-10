@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>スクリーンセーバーの代わり</title>
+    <script src="https://raw.githubusercontent.com/jiro4989/lib-js/master/standard/clock.js"></script>
+
+    <script>
+      window.onload = () => {
+        const text = decodeURIComponent(location.search.match(/text=(.*?)(&|$)/)[1]);
+        const fontSize = decodeURIComponent(location.search.match(/fontSize=(.*?)(&|$)/)[1]);
+
+        let QS = (s) => document.querySelector(s);
+        QS("#text").innerHTML = text;
+        QS("#text").style.fontSize = fontSize + "pt";
+        QS("#clock").style.fontSize = (Number(fontSize) - 5) + "pt";
+
+        bindClock("clock");
+      }
+    </script>
+  </head>
+  <body>
+    <div id="clock" style="text-align: center;"></div>
+    <div id="text" style="text-align: center;"></div>
+  </body>
+</html>
+

@@ -3,7 +3,7 @@
 んの静的Webページ
 
 ## サイトURL
-[ここ](https://jiro4989.github.io/rest-msg/)
+[ここ](https://jiro4989.github.io/rest-msg/?text=textパラメータがここに表示されます。<br/>fontSizeは100です。&fontSize=100)
 
 ## 使い方
 URLに`text`パラメータと`fontSize`パラメータを付与してアクセスする。

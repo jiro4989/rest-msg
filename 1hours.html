@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>スクリーンセーバーの代わり(1時間版)</title>
+    <script src="./js/standard/clock.js"></script>
+
+    <script>
+      window.onload = () => {
+        const text = decodeURIComponent(location.search.match(/text=(.*?)(&|$)/)[1]);
+        const fontSize = decodeURIComponent(location.search.match(/fontSize=(.*?)(&|$)/)[1]);
+
+        // 時間文字列の作成
+        const now = new Date();
+        const nowText = formatTime(now);
+        now.setHours(now.getHours() + 1);
+        const nextText = formatTime(now);
+
+        let QS = (s) => document.querySelector(s);
+        QS("#text").innerHTML = text + "<br />" + nowText + " 〜 " + nextText;
+        QS("#text").style.fontSize = fontSize + "pt";
+        QS("#clock").style.fontSize = (Number(fontSize) - 5) + "pt";
+
+        bindClock("clock");
+      }
+    </script>
+  </head>
+  <body>
+    <div id="clock" style="text-align: center;"></div>
+    <div id="text" style="text-align: center;"></div>
+  </body>
+</html>

@@ -10,13 +10,18 @@ function bindClock(id) {
   let pad = (n) => ('0' + n).slice(-2);
   let countTime = function() {
     let date     = new Date();
-    let hours    = date.getHours();
-    let minutes  = date.getMinutes();
-    let seconds  = date.getSeconds();
-    let timeText = pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
-
+    let timeText = formatTime(date);
     document.getElementById(id).innerHTML = timeText;
     setTimeout(countTime, 500);
   }
   countTime();
+}
+
+function formatTime(date) {
+  const pad = (n) => ('0' + n).slice(-2);
+  const hours    = date.getHours();
+  const minutes  = date.getMinutes();
+  const seconds  = date.getSeconds();
+  const timeText = pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
+  return timeText;
 }

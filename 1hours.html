@@ -6,6 +6,8 @@
     <script src="./js/standard/clock.js"></script>
 
     <script>
+      let nextText = null;
+
       window.onload = () => {
         const text = decodeURIComponent(location.search.match(/text=(.*?)(&|$)/)[1]);
         const fontSize = decodeURIComponent(location.search.match(/fontSize=(.*?)(&|$)/)[1]);
@@ -14,7 +16,7 @@
         const now = new Date();
         const nowText = formatTime(now);
         now.setHours(now.getHours() + 1);
-        const nextText = formatTime(now);
+        nextText = formatTime(now);
 
         let QS = (s) => document.querySelector(s);
         QS("#text").innerHTML = text + "<br />" + nowText + " 〜 " + nextText;
@@ -22,6 +24,11 @@
         QS("#clock").style.fontSize = (Number(fontSize) - 5) + "pt";
 
         bindClock("clock");
+
+        // 時間になったらアラート表示
+        const alertTime = new Date();
+        alertTime.setHours(alertTime.getHours() + 1);
+        alertClock(alertTime, () => alert(`時間になりました。 time=${nextText}`));
       }
     </script>
   </head>

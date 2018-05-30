@@ -6,8 +6,6 @@
     <script src="./js/standard/clock.js"></script>
 
     <script>
-      let nextText = null;
-
       window.onload = () => {
         const text = decodeURIComponent(location.search.match(/text=(.*?)(&|$)/)[1]);
         const fontSize = decodeURIComponent(location.search.match(/fontSize=(.*?)(&|$)/)[1]);
@@ -16,7 +14,7 @@
         const now = new Date();
         const nowText = formatTime(now);
         now.setHours(now.getHours() + 1);
-        nextText = formatTime(now);
+        const nextText = formatTime(now);
 
         let QS = (s) => document.querySelector(s);
         QS("#text").innerHTML = text + "<br />" + nowText + " 〜 " + nextText;
